@@ -6,6 +6,8 @@ IN_ADDRESS="
 192.168.33.0/22
 8.8.8.8/32
 "
+# VPN SERVER IP
+SERVER_IP="192.168.1.1"
 
 cidr2mask() {
 	local i mask=""
@@ -30,5 +32,5 @@ for i in $IN_ADDRESS
 do
 	ipmask=$(echo $i | tr "/" "\n")
 	vars=( $ipmask )
-	echo 'push "route '${vars[0]}' '$(cidr2mask ${vars[1]})' 192.168.207.254"'
+	echo 'push "route '${vars[0]}' '$(cidr2mask ${vars[1]})' '$SERVER_IP'"'
 done
